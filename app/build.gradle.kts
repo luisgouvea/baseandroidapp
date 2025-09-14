@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.nowinjetpack"
+    namespace = "com.example.baseandroidapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.nowinjetpack"
+        applicationId = "com.example.baseandroidapp"
         minSdk = 26
         targetSdk = 33
         versionCode = 1

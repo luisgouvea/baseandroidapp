@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.nowinjetpack.marvel"
+    namespace = "com.example.baseandroidapp.marvel"
     compileSdk = 34
 
     defaultConfig {

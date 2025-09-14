@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context="com.example.nowinjetpack.feature.marvel.MarvelActivity">
+        tools:context="com.example.baseandroidapp.feature.marvel.MarvelActivity">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_test"

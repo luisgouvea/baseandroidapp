@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "nowinjetpack"
+rootProject.name = "baseandroidapp"
 include(":app")
 include(":core")
 include(":core:data")
