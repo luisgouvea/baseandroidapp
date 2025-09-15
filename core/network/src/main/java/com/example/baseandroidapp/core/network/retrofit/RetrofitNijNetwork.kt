@@ -2,8 +2,6 @@ package com.example.baseandroidapp.core.network.retrofit
 
 import com.example.network.BuildConfig
 import com.example.baseandroidapp.core.network.NijNetworkDataSource
-import com.example.baseandroidapp.core.network.model.DeliveryResponse
-import com.example.baseandroidapp.core.network.model.ResultSeriesResponse
 import com.example.baseandroidapp.core.network.model.UserResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -35,12 +33,6 @@ class RetrofitNijNetwork @Inject constructor(
     private fun getMoshi(): Moshi = Moshi.Builder()
         .addLast(KotlinJsonAdapterFactory())
         .build()
-
-    override suspend fun fetchDeliveries(page: Int): List<DeliveryResponse> =
-        networkApi.getDeliveries(page)
-
-    override suspend fun fetchSeries(id: Int): ResultSeriesResponse =
-        networkApi.getComics(id)
 
     override suspend fun fetchUser(): List<UserResponse> =
         networkApi.getUsers()

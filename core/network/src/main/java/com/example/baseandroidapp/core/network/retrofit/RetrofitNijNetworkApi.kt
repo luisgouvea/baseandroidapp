@@ -1,7 +1,5 @@
 package com.example.baseandroidapp.core.network.retrofit
 
-import com.example.baseandroidapp.core.network.model.DeliveryResponse
-import com.example.baseandroidapp.core.network.model.ResultSeriesResponse
 import com.example.baseandroidapp.core.network.model.UserResponse
 import kotlinx.serialization.Serializable
 import retrofit2.http.GET
@@ -13,18 +11,6 @@ import retrofit2.http.Query
  * Retrofit API declaration for NIJ Network API
  */
 interface RetrofitNijNetworkApi {
-
-
-    @GET("/v1/public/characters/{id}/comics")
-    suspend fun getComics(
-        @Path("id") id: Int
-    ): ResultSeriesResponse
-
-    @GET("/meuspedidos/v2/listagem")
-    suspend fun getDeliveries(
-        @Query("pagina") page: Int
-    ): List<DeliveryResponse>
-
     @GET("/users")
     suspend fun getUsers(): List<UserResponse>
 }
