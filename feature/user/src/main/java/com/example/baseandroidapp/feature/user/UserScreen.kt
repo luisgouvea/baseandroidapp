@@ -13,12 +13,13 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.baseandroidapp.core.model.data.User
 
 @Composable
 fun UserRoute(
     viewModel: UserViewModel = hiltViewModel()
 ) {
-    //val title by viewModel.uiSerieState.collectAsStateWithLifecycle()
     val title by viewModel.uiUserState.collectAsStateWithLifecycle()
     UserScreen(title)
 }
@@ -51,8 +52,9 @@ fun UserScreen(text: UserUiState) {
     }
 }
 
-//@Preview
+@Preview(name = "UserScreenPopulated")
 @Composable
-fun UserScreenPreview(text: UserUiState) {
+fun UserScreenPreview() {
+    val text: UserUiState = UserUiState.Success(mutableListOf(User(1,"First name")))
     UserScreen(text)
 }
