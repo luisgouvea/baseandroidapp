@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.flowOf
 
 class TestUserRepository : UserRepository {
 
-    private val cachedTopics: MutableList<User> = mutableListOf()
+    private val cachedUsers: MutableList<User> = mutableListOf()
 
     override fun getUser(): Flow<List<User>> = flowOf(
-        cachedTopics
+        cachedUsers
     )
 }

@@ -1,7 +1,7 @@
 package com.example.baseandroidapp.core.network.retrofit
 
 import com.example.network.BuildConfig
-import com.example.baseandroidapp.core.network.NijNetworkDataSource
+import com.example.baseandroidapp.core.network.BapNetworkDataSource
 import com.example.baseandroidapp.core.network.model.UserResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -12,12 +12,12 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
- * [Retrofit] backed [NijNetworkDataSource]
+ * [Retrofit] backed [BapNetworkDataSource]
  */
 @Singleton
-class RetrofitNijNetwork @Inject constructor(
+class RetrofitBapNetwork @Inject constructor(
     okHttpClient: OkHttpClient
-) : NijNetworkDataSource {
+) : BapNetworkDataSource {
 
     private val networkApi = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
@@ -28,7 +28,7 @@ class RetrofitNijNetwork @Inject constructor(
             )
         )
         .build()
-        .create(RetrofitNijNetworkApi::class.java)
+        .create(RetrofitBapNetworkApi::class.java)
 
     private fun getMoshi(): Moshi = Moshi.Builder()
         .addLast(KotlinJsonAdapterFactory())

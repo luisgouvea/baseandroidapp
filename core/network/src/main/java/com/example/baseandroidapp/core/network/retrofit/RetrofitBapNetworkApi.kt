@@ -3,22 +3,20 @@ package com.example.baseandroidapp.core.network.retrofit
 import com.example.baseandroidapp.core.network.model.UserResponse
 import kotlinx.serialization.Serializable
 import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 
 /**
- * Retrofit API declaration for NIJ Network API
+ * Retrofit API declaration for BAP Network API
  */
-interface RetrofitNijNetworkApi {
+interface RetrofitBapNetworkApi {
     @GET("/users")
     suspend fun getUsers(): List<UserResponse>
 }
 
-const val NijBaseUrl = "url"
+const val BapBaseUrl = "url"
 
 /**
- * Wrapper for data provided from the [NijBaseUrl]
+ * Wrapper for data provided from the [BapBaseUrl]
  */
 @Serializable
 data class NetworkResponse<T>(

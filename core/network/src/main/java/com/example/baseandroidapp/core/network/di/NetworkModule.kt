@@ -1,7 +1,7 @@
 package com.example.baseandroidapp.core.network.di
 
-import com.example.baseandroidapp.core.network.NijNetworkDataSource
-import com.example.baseandroidapp.core.network.retrofit.RetrofitNijNetwork
+import com.example.baseandroidapp.core.network.BapNetworkDataSource
+import com.example.baseandroidapp.core.network.retrofit.RetrofitBapNetwork
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,7 +15,7 @@ abstract class NetworkModule {
     @Binds
     @Singleton
     abstract fun bindsNetwork(
-        addressRemoteRepositoryImpl: RetrofitNijNetwork
-    ): NijNetworkDataSource
+        retrofitBapNetwork: RetrofitBapNetwork
+    ): BapNetworkDataSource
 
 }
