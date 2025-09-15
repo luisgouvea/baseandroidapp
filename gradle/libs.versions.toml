@@ -20,7 +20,9 @@ androidxComposeBom = "2025.01.01"
 androidxHiltNavigationCompose = "1.0.0"
 androidxLifecycle = "2.6.1"
 mockk = "1.13.9"
+androidxCoreSplashscreen = "1.0.1"
 [libraries]
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
 lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidx" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }

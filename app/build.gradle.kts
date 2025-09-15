@@ -64,6 +64,8 @@ dependencies {
 
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
+    implementation(libs.androidx.core.splashscreen)
+
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
