@@ -1,25 +1,24 @@
-@Suppress("DSL_SCOPE_VIOLATION")
+@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.com.android.library)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     alias(libs.plugins.compose.compiler)
-
 }
 
 android {
-    namespace = "com.example.baseandroidapp"
+    namespace = "com.example.baseandroidapp.user"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.baseandroidapp"
         minSdk = 26
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -42,25 +41,22 @@ android {
         viewBinding = true
         compose = true
     }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {
 
-    //TODO: Future - Improvements libs.versions.toml and organize in specific modules
-
-    val navigation_version = "2.4.1"
-
-    // AndroidX
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:$navigation_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$navigation_version")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-
     implementation(project(":core:common"))
-    implementation(project(":core:network"))
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
-    implementation(project(":feature:user"))
+    implementation(project(":core:model"))
+
+
+    implementation(libs.lifecycle.viewmodel)
 
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
@@ -69,7 +65,9 @@ dependencies {
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
-    implementation(libs.lifecycle.viewmodel)
+    // Testing
+    api(libs.kotlinx.coroutines.test)
+    api(libs.kotlin.test)
 
     // Compose
     val composeBom = platform("androidx.compose:compose-bom:2025.01.01")
@@ -82,8 +80,14 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewModelCompose)
     implementation(libs.androidx.compose.runtime)
 
-}
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 
-kapt {
-    correctErrorTypes = true
+
+
+
 }
