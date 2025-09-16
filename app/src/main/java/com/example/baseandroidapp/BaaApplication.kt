@@ -5,9 +5,9 @@ import androidx.lifecycle.LifecycleObserver
 import dagger.hilt.android.HiltAndroidApp
 
 /**
- * [Application] class for Bap
+ * [Application] class for Baa
  */
 @HiltAndroidApp
-open class BapApplication :
+open class BaaApplication :
     Application(),
     LifecycleObserver

@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.baseandroidapp.core.designsystem.icon.BapIcons
+import com.example.baseandroidapp.core.designsystem.icon.BaaIcons
 
 /**
  * Now in Android navigation bar item with icon and label content slots. Wraps Material 3
@@ -82,14 +82,14 @@ fun NiaNavigationBar(
 fun NiaNavigationBarPreview() {
     val items = listOf("For you", "Saved", "Interests")
     val icons = listOf(
-        BapIcons.UpcomingBorder,
-        BapIcons.BookmarksBorder,
-        BapIcons.Grid3x3,
+        BaaIcons.UpcomingBorder,
+        BaaIcons.BookmarksBorder,
+        BaaIcons.Grid3x3,
     )
     val selectedIcons = listOf(
-        BapIcons.Upcoming,
-        BapIcons.Bookmarks,
-        BapIcons.Grid3x3,
+        BaaIcons.Upcoming,
+        BaaIcons.Bookmarks,
+        BaaIcons.Grid3x3,
     )
     MaterialTheme {
         NiaNavigationBar {

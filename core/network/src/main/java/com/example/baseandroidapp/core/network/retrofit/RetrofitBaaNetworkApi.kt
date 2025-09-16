@@ -6,17 +6,17 @@ import retrofit2.http.GET
 
 
 /**
- * Retrofit API declaration for BAP Network API
+ * Retrofit API declaration for BAA Network API
  */
-interface RetrofitBapNetworkApi {
+interface RetrofitBaaNetworkApi {
     @GET("/users")
     suspend fun getUsers(): List<UserResponse>
 }
 
-const val BapBaseUrl = "url"
+const val BaaBaseUrl = "url"
 
 /**
- * Wrapper for data provided from the [BapBaseUrl]
+ * Wrapper for data provided from the [BaaBaseUrl]
  */
 @Serializable
 data class NetworkResponse<T>(

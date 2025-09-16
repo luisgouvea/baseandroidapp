@@ -4,8 +4,8 @@ import com.example.baseandroidapp.core.network.model.UserResponse
 
 
 /**
- * Interface representing network calls to the BAP backend
+ * Interface representing network calls to the BAA backend
  */
-interface BapNetworkDataSource {
+interface BaaNetworkDataSource {
     suspend fun fetchUser(): List<UserResponse>
 }
