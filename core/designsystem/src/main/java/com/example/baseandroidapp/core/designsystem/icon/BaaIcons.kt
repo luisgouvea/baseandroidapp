@@ -21,7 +21,7 @@ import androidx.compose.material.icons.rounded.ViewDay
 import androidx.compose.ui.graphics.vector.ImageVector
 
 /**
- * Now in Android icons. Material icons are [ImageVector]s, custom icons are drawable resource IDs.
+ * Base Android App icons. Material icons are [ImageVector]s, custom icons are drawable resource IDs.
  */
 object BaaIcons {
     val Add = Icons.Rounded.Add

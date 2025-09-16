@@ -4,11 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import com.example.baseandroidapp.feature.user.navigation.userSection
-import com.example.baseandroidapp.ui.NiaAppState
+import com.example.baseandroidapp.ui.BaaAppState
 
 @Composable
-fun NiaNavHost(
-    appState: NiaAppState,
+fun BaaNavHost(
+    appState: BaaAppState,
     modifier: Modifier = Modifier
 ) {
     val navController = appState.navController

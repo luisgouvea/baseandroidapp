@@ -24,24 +24,24 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import com.example.baseandroidapp.core.designsystem.component.NiaNavigationBar
-import com.example.baseandroidapp.core.designsystem.component.NiaNavigationBarItem
-import com.example.baseandroidapp.navigation.NiaNavHost
+import com.example.baseandroidapp.core.designsystem.component.BaaNavigationBar
+import com.example.baseandroidapp.core.designsystem.component.BaaNavigationBarItem
+import com.example.baseandroidapp.navigation.BaaNavHost
 import com.example.baseandroidapp.navigation.TopLevelDestination
 
 @Composable
-fun NiaApp(
-    appState: NiaAppState
+fun BaaApp(
+    appState: BaaAppState
 ) {
-    NiaApp2(
+    BaaApp2(
         appState = appState
     )
 }
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
-internal fun NiaApp2(
-    appState: NiaAppState,
+internal fun BaaApp2(
+    appState: BaaAppState,
     modifier: Modifier = Modifier
 ) {
 
@@ -50,11 +50,11 @@ internal fun NiaApp2(
         contentColor = MaterialTheme.colorScheme.onBackground,
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         bottomBar = {
-            NiaBottomBar(
+            BaaBottomBar(
                 destinations = appState.topLevelDestinations,
                 onNavigateToDestination = appState::navigateToTopLevelDestination,
                 currentDestination = appState.currentDestination,
-                modifier = Modifier.testTag("NiaBottomBar"),
+                modifier = Modifier.testTag("BaaBottomBar"),
             )
         },
     ) { padding ->
@@ -76,7 +76,7 @@ internal fun NiaApp2(
                         WindowInsets(0, 0, 0, 0),
                     ),
                 ) {
-                    NiaNavHost(
+                    BaaNavHost(
                         appState = appState
                     )
                 }
@@ -89,18 +89,18 @@ internal fun NiaApp2(
 }
 
 @Composable
-private fun NiaBottomBar(
+private fun BaaBottomBar(
     destinations: List<TopLevelDestination>,
     onNavigateToDestination: (TopLevelDestination) -> Unit,
     currentDestination: NavDestination?,
     modifier: Modifier = Modifier,
 ) {
-    NiaNavigationBar(
+    BaaNavigationBar(
         modifier = modifier,
     ) {
         destinations.forEach { destination ->
             val selected = currentDestination.isTopLevelDestinationInHierarchy(destination)
-            NiaNavigationBarItem(
+            BaaNavigationBarItem(
                 selected = selected,
                 onClick = { onNavigateToDestination(destination) },
                 icon = {

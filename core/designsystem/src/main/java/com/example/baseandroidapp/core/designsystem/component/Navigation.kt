@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.example.baseandroidapp.core.designsystem.icon.BaaIcons
 
 /**
- * Now in Android navigation bar item with icon and label content slots. Wraps Material 3
+ * Base Android app navigation bar item with icon and label content slots. Wraps Material 3
  * [NavigationBarItem].
  *
  * @param selected Whether this item is selected.
@@ -29,7 +29,7 @@ import com.example.baseandroidapp.core.designsystem.icon.BaaIcons
  * only be shown when this item is selected.
  */
 @Composable
-fun RowScope.NiaNavigationBarItem(
+fun RowScope.BaaNavigationBarItem(
     selected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -48,30 +48,30 @@ fun RowScope.NiaNavigationBarItem(
         label = label,
         alwaysShowLabel = alwaysShowLabel,
         colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = NiaNavigationDefaults.navigationSelectedItemColor(),
-            unselectedIconColor = NiaNavigationDefaults.navigationContentColor(),
-            selectedTextColor = NiaNavigationDefaults.navigationSelectedItemColor(),
-            unselectedTextColor = NiaNavigationDefaults.navigationContentColor(),
-            indicatorColor = NiaNavigationDefaults.navigationIndicatorColor(),
+            selectedIconColor = BaaNavigationDefaults.navigationSelectedItemColor(),
+            unselectedIconColor = BaaNavigationDefaults.navigationContentColor(),
+            selectedTextColor = BaaNavigationDefaults.navigationSelectedItemColor(),
+            unselectedTextColor = BaaNavigationDefaults.navigationContentColor(),
+            indicatorColor = BaaNavigationDefaults.navigationIndicatorColor(),
         ),
     )
 }
 
 /**
- * Now in Android navigation bar with content slot. Wraps Material 3 [NavigationBar].
+ * Base Android App navigation bar with content slot. Wraps Material 3 [NavigationBar].
  *
  * @param modifier Modifier to be applied to the navigation bar.
  * @param content Destinations inside the navigation bar. This should contain multiple
  * [NavigationBarItem]s.
  */
 @Composable
-fun NiaNavigationBar(
+fun BaaNavigationBar(
     modifier: Modifier = Modifier,
     content: @Composable RowScope.() -> Unit,
 ) {
     NavigationBar(
         modifier = modifier,
-        contentColor = NiaNavigationDefaults.navigationContentColor(),
+        contentColor = BaaNavigationDefaults.navigationContentColor(),
         tonalElevation = 0.dp,
         content = content,
     )
@@ -79,7 +79,7 @@ fun NiaNavigationBar(
 
 @Preview
 @Composable
-fun NiaNavigationBarPreview() {
+fun BaaNavigationBarPreview() {
     val items = listOf("For you", "Saved", "Interests")
     val icons = listOf(
         BaaIcons.UpcomingBorder,
@@ -92,9 +92,9 @@ fun NiaNavigationBarPreview() {
         BaaIcons.Grid3x3,
     )
     MaterialTheme {
-        NiaNavigationBar {
+        BaaNavigationBar {
             items.forEachIndexed { index, item ->
-                NiaNavigationBarItem(
+                BaaNavigationBarItem(
                     icon = {
                         Icon(
                             imageVector = icons[index],
@@ -117,9 +117,9 @@ fun NiaNavigationBarPreview() {
 }
 
 /**
- * Now in Android navigation default values.
+ * Base Android App navigation default values.
  */
-object NiaNavigationDefaults {
+object BaaNavigationDefaults {
     @Composable
     fun navigationContentColor() = MaterialTheme.colorScheme.onSurfaceVariant
 

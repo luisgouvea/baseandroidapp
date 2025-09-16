@@ -14,20 +14,20 @@ import com.example.baseandroidapp.navigation.TopLevelDestination
 import com.example.baseandroidapp.feature.user.navigation.navigateToUser
 
 @Composable
-fun rememberNiaAppState(
+fun rememberBaaAppState(
     navController: NavHostController = rememberNavController(),
-): NiaAppState {
+): BaaAppState {
     return remember(
         navController
     ) {
-        NiaAppState(
+        BaaAppState(
             navController = navController
         )
     }
 }
 
 @Stable
-class NiaAppState(
+class BaaAppState(
     val navController: NavHostController
 ) {
     private val previousDestination = mutableStateOf<NavDestination?>(null)
