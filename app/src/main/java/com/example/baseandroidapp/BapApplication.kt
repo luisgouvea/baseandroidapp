@@ -4,10 +4,10 @@ import android.app.Application
 import androidx.lifecycle.LifecycleObserver
 import dagger.hilt.android.HiltAndroidApp
 
+/**
+ * [Application] class for Bap
+ */
 @HiltAndroidApp
-open class CustomApp :
+open class BapApplication :
     Application(),
-    LifecycleObserver {
-
-
-}
+    LifecycleObserver

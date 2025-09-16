@@ -60,6 +60,7 @@ dependencies {
     implementation(project(":core:network"))
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
+    implementation(project(":core:designsystem"))
     implementation(project(":feature:user"))
 
     implementation(libs.androidx.lifecycle.livedata.ktx)

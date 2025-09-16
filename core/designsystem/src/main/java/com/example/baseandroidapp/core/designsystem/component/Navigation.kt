@@ -1,8 +1,6 @@
-package com.example.baseandroidapp.ui.components
+package com.example.baseandroidapp.core.designsystem.component
 
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -13,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.baseandroidapp.core.designsystem.icon.BapIcons
 
 /**
  * Now in Android navigation bar item with icon and label content slots. Wraps Material 3
@@ -83,14 +82,14 @@ fun NiaNavigationBar(
 fun NiaNavigationBarPreview() {
     val items = listOf("For you", "Saved", "Interests")
     val icons = listOf(
-        Icons.Rounded.Add,
-        Icons.Rounded.Add,
-        Icons.Rounded.Add,
+        BapIcons.UpcomingBorder,
+        BapIcons.BookmarksBorder,
+        BapIcons.Grid3x3,
     )
     val selectedIcons = listOf(
-        Icons.Rounded.Add,
-        Icons.Rounded.Add,
-        Icons.Rounded.Add,
+        BapIcons.Upcoming,
+        BapIcons.Bookmarks,
+        BapIcons.Grid3x3,
     )
     MaterialTheme {
         NiaNavigationBar {

@@ -24,10 +24,10 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
+import com.example.baseandroidapp.core.designsystem.component.NiaNavigationBar
+import com.example.baseandroidapp.core.designsystem.component.NiaNavigationBarItem
 import com.example.baseandroidapp.navigation.NiaNavHost
 import com.example.baseandroidapp.navigation.TopLevelDestination
-import com.example.baseandroidapp.ui.components.NiaNavigationBar
-import com.example.baseandroidapp.ui.components.NiaNavigationBarItem
 
 @Composable
 fun NiaApp(
