@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.baseandroidapp.core.designsystem"
-    compileSdk = 34
+    compileSdk = 33
 
     defaultConfig {
         minSdk = 26
