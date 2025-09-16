@@ -9,7 +9,8 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.baseandroidapp.feature.user.UserRoute
+import com.example.baseandroidapp.ui.NiaApp
+import com.example.baseandroidapp.ui.rememberNiaAppState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -36,8 +37,10 @@ class MainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
         setContent {
+            val appState = rememberNiaAppState()
+
             MaterialTheme {
-                UserRoute()
+                NiaApp(appState)
             }
         }
     }

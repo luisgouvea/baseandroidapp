@@ -60,6 +60,9 @@ dependencies {
 
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
+    // Serialization
+    implementation(libs.kotlinx.serialization.json)
+
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
@@ -79,6 +82,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtimeCompose)
     implementation(libs.androidx.lifecycle.viewModelCompose)
     implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.navigation.compose)
 
     implementation(libs.appcompat)
     implementation(libs.material)

@@ -13,7 +13,6 @@ androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
 material = "1.9.0"
-lifecycle-runtime-ktx = "2.6.1"
 hilt = "2.47"
 activity = "1.6.1"
 androidxComposeBom = "2025.01.01"
@@ -21,6 +20,7 @@ androidxHiltNavigationCompose = "1.0.0"
 androidxLifecycle = "2.6.1"
 mockk = "1.13.9"
 androidxCoreSplashscreen = "1.0.1"
+androidxNavigation = "2.8.5"
 [libraries]
 androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidxCoreSplashscreen" }
 lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidx" }
@@ -41,7 +41,7 @@ material = { group = "com.google.android.material", name = "material", version.r
 # Material Design 3
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
 #Hilt
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-compiler= { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
