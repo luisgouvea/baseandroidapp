@@ -9,15 +9,20 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.baseandroidapp.core.data.util.NetworkMonitor
 import com.example.baseandroidapp.ui.BaaApp
 import com.example.baseandroidapp.ui.rememberBaaAppState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private var isLoading = true
+
+    @Inject
+    lateinit var networkMonitor: NetworkMonitor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
@@ -37,7 +42,9 @@ class MainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
         setContent {
-            val appState = rememberBaaAppState()
+            val appState = rememberBaaAppState(
+                networkMonitor = networkMonitor
+            )
 
             MaterialTheme {
                 BaaApp(appState)

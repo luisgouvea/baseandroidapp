@@ -5,32 +5,52 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import com.example.baseandroidapp.core.data.util.NetworkMonitor
 import com.example.baseandroidapp.navigation.TopLevelDestination
 import com.example.baseandroidapp.feature.user.navigation.navigateToUser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 
 @Composable
 fun rememberBaaAppState(
     navController: NavHostController = rememberNavController(),
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
+    networkMonitor: NetworkMonitor
 ): BaaAppState {
     return remember(
         navController
     ) {
         BaaAppState(
-            navController = navController
+            navController = navController,
+            coroutineScope = coroutineScope,
+            networkMonitor = networkMonitor
         )
     }
 }
 
 @Stable
 class BaaAppState(
-    val navController: NavHostController
+    val navController: NavHostController,
+    coroutineScope: CoroutineScope,
+    networkMonitor: NetworkMonitor,
 ) {
     private val previousDestination = mutableStateOf<NavDestination?>(null)
+
+    val isOffline = networkMonitor.isOnline
+        .map(Boolean::not)
+        .stateIn(
+            scope = coroutineScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = false,
+        )
 
     val topLevelDestinations: List<TopLevelDestination> = TopLevelDestination.entries
 
@@ -71,7 +91,7 @@ class BaaAppState(
         }
 
         when (topLevelDestination) {
-            TopLevelDestination.FOR_YOU -> navController.navigateToUser(topLevelNavOptions)
+            TopLevelDestination.USERS -> navController.navigateToUser(topLevelNavOptions)
         }
     }
 }

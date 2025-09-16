@@ -1,10 +1,8 @@
 package com.example.baseandroidapp.navigation
 
-
-import com.example.baseandroidapp.R
-import androidx.compose.material.icons.Icons
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.material.icons.rounded.Add
+import com.example.baseandroidapp.core.designsystem.icon.BaaIcons
+import com.example.baseandroidapp.user.R as userR
 /**
  * Type for the top level destinations in the application. Each of these destinations
  * can contain one or more screens (based on the window size). Navigation from one screen to the
@@ -16,10 +14,10 @@ enum class TopLevelDestination(
     val iconTextId: Int,
     val titleTextId: Int,
 ) {
-    FOR_YOU(
-        selectedIcon = Icons.Rounded.Add,
-        unselectedIcon = Icons.Rounded.Add,
-        iconTextId =  R.string.app_name,
-        titleTextId = R.string.app_name,
+    USERS(
+        selectedIcon = BaaIcons.Person,
+        unselectedIcon = BaaIcons.PersonBorder,
+        iconTextId =  userR.string.feature_user_title,
+        titleTextId = userR.string.feature_user_title,
     )
 }

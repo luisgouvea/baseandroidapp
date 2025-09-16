@@ -15,15 +15,23 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration.Indefinite
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
+import com.example.baseandroidapp.R
 import com.example.baseandroidapp.core.designsystem.component.BaaNavigationBar
 import com.example.baseandroidapp.core.designsystem.component.BaaNavigationBarItem
 import com.example.baseandroidapp.navigation.BaaNavHost
@@ -33,22 +41,39 @@ import com.example.baseandroidapp.navigation.TopLevelDestination
 fun BaaApp(
     appState: BaaAppState
 ) {
-    BaaApp2(
-        appState = appState
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    val isOffline by appState.isOffline.collectAsStateWithLifecycle()
+
+    // If user is not connected to the internet show a snack bar to inform them.
+    val notConnectedMessage = stringResource(R.string.not_connected)
+    LaunchedEffect(isOffline) {
+        if (isOffline) {
+            snackbarHostState.showSnackbar(
+                message = notConnectedMessage,
+                duration = Indefinite,
+            )
+        }
+    }
+
+    BaaApp(
+        appState = appState,
+        snackbarHostState = snackbarHostState,
     )
 }
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
-internal fun BaaApp2(
+internal fun BaaApp(
     appState: BaaAppState,
-    modifier: Modifier = Modifier
+    snackbarHostState: SnackbarHostState
 ) {
 
     Scaffold(
         containerColor = Color.Transparent,
         contentColor = MaterialTheme.colorScheme.onBackground,
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
+        snackbarHost = { SnackbarHost(snackbarHostState) },
         bottomBar = {
             BaaBottomBar(
                 destinations = appState.topLevelDestinations,
