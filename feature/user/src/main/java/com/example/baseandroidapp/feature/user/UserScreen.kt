@@ -1,31 +1,45 @@
 package com.example.baseandroidapp.feature.user
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.baseandroidapp.core.designsystem.icon.BaaIcons
 import com.example.baseandroidapp.core.model.data.User
 
 @Composable
 fun UserRoute(
     viewModel: UserViewModel = hiltViewModel()
 ) {
-    val title by viewModel.uiUserState.collectAsStateWithLifecycle()
-    UserScreen(title)
+    val userUiState by viewModel.uiUserState.collectAsStateWithLifecycle()
+    UserScreen(userUiState)
 }
 
 @Composable
-fun UserScreen(text: UserUiState) {
+fun UserScreen(userUiState: UserUiState) {
     Scaffold {
         Box(
             modifier = Modifier
@@ -34,16 +48,19 @@ fun UserScreen(text: UserUiState) {
                 .padding(16.dp),
             contentAlignment = Alignment.Center
         ) {
-            when (text) {
+            when (userUiState) {
                 UserUiState.Loading -> {
                     CircularProgressIndicator()
                 }
 
                 is UserUiState.Success -> {
-                    text.users?.let { listUsers ->
-                        if (listUsers.isNotEmpty()) {
-                            val name = listUsers[0].name
-                            Text(text = name)
+                    if (userUiState.users.isNotEmpty()) {
+                        LazyColumn(
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            items(userUiState.users) { name ->
+                                ListItem(name = name.name)
+                            }
                         }
                     }
                 }
@@ -52,9 +69,42 @@ fun UserScreen(text: UserUiState) {
     }
 }
 
+@Composable
+fun ListItem(name: String) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+
+        Icon(
+            imageVector = BaaIcons.Person,
+            contentDescription = "Person",
+            modifier = Modifier.size(100.dp),
+            tint = Color(MaterialTheme.colorScheme.tertiaryContainer.toArgb())
+        )
+
+        Spacer(modifier = Modifier.width(12.dp))
+
+        Text(
+            text = name,
+            style = typography.bodyLarge,
+            modifier = Modifier.weight(1f)
+        )
+
+        Icon(
+            imageVector = BaaIcons.ArrowForwardIos,
+            contentDescription = "Arrow"
+        )
+
+
+    }
+    HorizontalDivider()
+}
+
 @Preview(name = "UserScreenPopulated")
 @Composable
 fun UserScreenPreview() {
-    val text: UserUiState = UserUiState.Success(mutableListOf(User(1,"First name")))
-    UserScreen(text)
+    val userUiState: UserUiState = UserUiState.Success(mutableListOf(User(1, "First name")))
+    UserScreen(userUiState)
 }
