@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.example.baseandroidapp.feature.user.UserRoute
-const val USER_ROUTE = "USER_ROUTE"
+const val USER_ROUTE = "USERS"
 
 fun NavController.navigateToUser(navOptions: NavOptions) = navigate(USER_ROUTE, navOptions)
 
