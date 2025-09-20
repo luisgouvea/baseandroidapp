@@ -1,7 +1,7 @@
 package com.example.baseandroidapp.feature.user
 
 import com.example.baseandroidapp.core.domain.UserUseCase
-import com.example.baseandroidapp.feature.user.data.usersTestData
+import com.example.baseandroidapp.feature.user.data.usersListFlow
 import com.example.baseandroidapp.feature.user.repository.TestUserRepository
 import com.example.baseandroidapp.feature.user.util.MainDispatcherRule
 import io.mockk.coEvery
@@ -48,7 +48,7 @@ class UserViewModelTest {
         @Test
     fun mockUsersSuccess() = runTest {
             userUseCase = mockk()
-            coEvery { userUseCase.getUser() } returns usersTestData
+            coEvery { userUseCase.getUser() } returns usersListFlow
             viewModel = UserViewModel(userUseCase)
 
             val collectJob = launch(UnconfinedTestDispatcher()) { viewModel.uiUserState.collect() }
