@@ -91,7 +91,7 @@ class BaaAppState(
         }
 
         when (topLevelDestination) {
-            TopLevelDestination.USERS -> navController.navigateToUser(topLevelNavOptions)
+            TopLevelDestination.USER_FEATURE -> navController.navigateToUser(topLevelNavOptions)
         }
     }
 }

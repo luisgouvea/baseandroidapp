@@ -1,5 +1,6 @@
 package com.example.baseandroidapp.feature.user
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -32,14 +33,18 @@ import com.example.baseandroidapp.core.model.data.User
 
 @Composable
 fun UserRoute(
+    onNavigateToDetails: (Int) -> Unit,
     viewModel: UserViewModel = hiltViewModel()
 ) {
     val userUiState by viewModel.uiUserState.collectAsStateWithLifecycle()
-    UserScreen(userUiState)
+    UserScreen(userUiState, onNavigateToDetails)
 }
 
 @Composable
-fun UserScreen(userUiState: UserUiState) {
+fun UserScreen(
+    userUiState: UserUiState,
+    onNavigateToDetails: (Int) -> Unit
+) {
     Scaffold {
         Box(
             modifier = Modifier
@@ -58,8 +63,12 @@ fun UserScreen(userUiState: UserUiState) {
                         LazyColumn(
                             modifier = Modifier.fillMaxSize()
                         ) {
-                            items(userUiState.users) { name ->
-                                ListItem(name = name.name)
+                            items(userUiState.users) { user ->
+                                ListItem(
+                                    name = user.name,
+                                    id = user.id,
+                                    onNavigateToDetails
+                                )
                             }
                         }
                     }
@@ -70,10 +79,15 @@ fun UserScreen(userUiState: UserUiState) {
 }
 
 @Composable
-fun ListItem(name: String) {
+fun ListItem(
+    name: String,
+    id: Int,
+    onNavigateToDetails: (Int) -> Unit
+) {
     Row(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable { onNavigateToDetails(id) },
         verticalAlignment = Alignment.CenterVertically
     ) {
 
@@ -106,5 +120,11 @@ fun ListItem(name: String) {
 @Composable
 fun UserScreenPreview() {
     val userUiState: UserUiState = UserUiState.Success(mutableListOf(User(1, "First name")))
-    UserScreen(userUiState)
+    UserScreen(userUiState,{})
+}
+
+@Preview(name = "ListItem", showBackground = true)
+@Composable
+fun ListItemPreview() {
+    ListItem("Name",1,{})
 }

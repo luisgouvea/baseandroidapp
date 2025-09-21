@@ -14,7 +14,7 @@ enum class TopLevelDestination(
     val iconTextId: Int,
     val titleTextId: Int,
 ) {
-    USERS(
+    USER_FEATURE(
         selectedIcon = BaaIcons.Person,
         unselectedIcon = BaaIcons.PersonBorder,
         iconTextId =  userR.string.feature_user_title,
