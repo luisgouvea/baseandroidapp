@@ -12,7 +12,6 @@ import com.example.baseandroidapp.feature.user.DetailsUserRoute
 import com.example.baseandroidapp.feature.user.UserRoute
 
 const val USER_FEATURE_ROUTE = "USER_FEATURE"
-const val USER_ROUTE = "USER_ROUTE"
 
 fun NavController.navigateToUser(navOptions: NavOptions) = navigate(USER_FEATURE_ROUTE, navOptions)
 
@@ -28,20 +27,34 @@ fun NavGraphBuilder.userSection() {
 fun UserNavHost(
     navController: NavHostController = rememberNavController()
 ) {
-    NavHost(navController, startDestination = USER_ROUTE) {
-        composable(USER_ROUTE) {
+    NavHost(navController, startDestination = Screen.Users.route) {
+        composable(Screen.Users.route) {
             UserRoute(
                 onNavigateToDetails = { userId ->
-                    navController.navigate("details/$userId")
+                    navController.navigate(Screen.DetailsUser.paramsDetailUser(userId))
                 }
             )
         }
 
-        composable("details/{id}") { backStackEntry ->
-            val id: String? = backStackEntry.arguments?.getString("id", "1")
+        composable(Screen.DetailsUser.route) { backStackEntry ->
+            val id: String? = backStackEntry.arguments?.getString("id")
             id?.let {
                 DetailsUserRoute(userId = it.toInt())
             }
         }
+    }
+}
+
+object Routes {
+    const val USER_ROUTE = "USER_ROUTE"
+    const val DETAILS_USER_ROUTE = "details/{id}"
+    fun setArgumentsDetailsUser(userId: Int) = "details/$userId"
+}
+
+sealed class Screen(val route: String) {
+    object Users : Screen(route = Routes.USER_ROUTE)
+
+    object DetailsUser : Screen(route = Routes.DETAILS_USER_ROUTE) {
+        fun paramsDetailUser(userId: Int) = Routes.setArgumentsDetailsUser(userId)
     }
 }
