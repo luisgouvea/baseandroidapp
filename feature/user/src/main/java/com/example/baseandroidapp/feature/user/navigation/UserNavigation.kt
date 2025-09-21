@@ -46,9 +46,9 @@ fun UserNavHost(
 }
 
 object Routes {
-    const val USER_ROUTE = "USER_ROUTE"
-    const val DETAILS_USER_ROUTE = "details/{id}"
-    fun setArgumentsDetailsUser(userId: Int) = "details/$userId"
+    const val USER_ROUTE = "user_route"
+    const val DETAILS_USER_ROUTE = "details_user_route/{id}"
+    fun setArgumentsDetailsUser(userId: Int) = "details_user_route/$userId"
 }
 
 sealed class Screen(val route: String) {
